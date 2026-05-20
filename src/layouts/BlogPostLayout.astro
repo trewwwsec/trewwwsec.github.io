@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { entry } = Astro.props;
+import { render } from 'astro:content';
+const { Content } = await render(entry);
+const title = `${entry.data.title} — Trewwwsec`;
+---
+<BaseLayout title={title} description={entry.data.description}>
+  <article class="post-shell">
+    <a class="eyebrow back-link" href="/blog/">← Research index</a>
+    <header class="post-header">
+      <p class="eyebrow">Reposted research note</p>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.description}</p>
+      <div class="post-meta">
+        <time datetime={entry.data.pubDate.toISOString()}>{entry.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+        <span>{entry.data.readTime}</span>
+        <a href={entry.data.sourceUrl}>Original on Medium</a>
+      </div>
+      <div class="tag-row">
+        {entry.data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+      </div>
+    </header>
+    <div class="source-note">
+      This local version preserves the research flow from the original Medium post while making the portfolio the durable home for the writeup. Screenshots from Medium are referenced by caption rather than re-hosted.
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

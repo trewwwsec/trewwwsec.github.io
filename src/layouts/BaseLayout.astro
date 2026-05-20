@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Trewwwsec — Security engineering in the signal/noise lab',
+  description = 'Security engineer researching, operating, and engineering across defensive and offensive security.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07090f" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Trewwwsec home">
+        <span class="brand-mark">⌁</span>
+        <span>Trewwwsec</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Research</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Built for the edge between defense, offense, and engineering craft.</p>
+      <div class="footer-links">
+        <a href="https://medium.com/@trewwwsec">Medium</a>
+        <a href="https://github.com/trewwwsec">GitHub</a>
+        <a href="mailto:hello@example.com">Email</a>
+      </div>
+    </footer>
+  </body>
+</html>
