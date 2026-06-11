@@ -1,11 +1,4 @@
----
-title: "When Cleanup Becomes Execution: Analyzing a Defender/WER Race Exploit"
-description: "An analysis of RoguePlanet, a Windows local privilege escalation exploit abusing Microsoft Defender cleanup, WER task execution, oplocks, and reparse-point races."
-pubDate: 2026-06-11
-readTime: "5 min read"
-tags: ["Exploit Analysis", "Windows Security", "Race Conditions"]
-featured: true
----
+# When Cleanup Becomes Execution: Analyzing a Defender/WER Race Exploit
 
 This sample, **RoguePlanet**, attempts to gain **LOCAL SYSTEM** privileges on Windows by abusing privileged file operations in Microsoft Defender and Windows Error Reporting.
 
@@ -24,8 +17,6 @@ named pipe callback
 ```
 
 The core bug class is a **time-of-check/time-of-use race condition**. The exploit tries to make a trusted Windows component inspect one filesystem path, then swaps the underlying object before the privileged operation completes.
-
-As of today, Defender patched it. However, the patch can be bypassed by shrimply renaming the named pipe. Here's a handy patch script: `(Get-Content "RoguePlanet.cpp") -replace "RoguePlanet", "ClownTown" | Set-Content "RoguePlanet.cpp"`.
 
 Let's explore this in a structured way, shall we?:
 1. First impressions/lay of the land
