@@ -58,7 +58,7 @@ API abuse, auth flaws, SSTI, practical defense</code></pre>
   <section class="section-block research-band">
     <div class="section-heading split">
       <div>
-        <p class="eyebrow">latest research</p>
+        <p class="eyebrow">analysis</p>
         <h2>Reposted from Medium, owned here.</h2>
       </div>
       <a class="text-link" href="/blog/">All posts →</a>
@@ -72,7 +72,7 @@ API abuse, auth flaws, SSTI, practical defense</code></pre>
           <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
           <p>{post.data.description}</p>
           <div class="post-meta compact">
-            <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+            <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>
             <span>{post.data.readTime}</span>
           </div>
         </article>
