@@ -973,7 +973,7 @@ YAML
 ```
 
 #### Create a self-managed StackSet
-The explicit administration and execution role arguments are important because your lab uses custom role names instead of AWS's defaults.
+The explicit administration and execution role arguments are important because custom role names are used instead of AWS's defaults.
 ```bash
 export REGION=$(aws configure get region --profile stacked)
 export ACCOUNT=528081867510
@@ -1035,7 +1035,7 @@ Exected output:
 ```
 > Wait until the status is `SUCCEEDED`. If it fails, inspect `list-stack-set-operation-results` for the individual stack instance failure.
 #### Verify that CloudFormation created the role
-If this succeeds, you've demonstrated the crucial escalation: your developer identity could not call `iam:CreateRole` directly, but it could initiate a CloudFormation operation that created the role under a different execution identity.
+This demonstrates the crucial escalation: the developer identity could not call `iam:CreateRole` directly, but it could initiate a CloudFormation operation that created the role under a different execution identity.
 ```bash
 aws iam get-role \
   --role-name cg-stackset-secrets-reader-lab \
