@@ -20,9 +20,9 @@
 
 ---
 
-## Known build risk
+## Build verification note
 
-The latest `npm run build` timed out during `astro check`, and a standalone Astro build also timed out. The baseline build is therefore not currently verified. Before implementing this feature, resolve that environment/build stall; do not treat a timeout as a passing check or attribute it to the analytics change.
+The main checkout previously timed out during Astro diagnostics. After dependency setup in the isolated worktree, the baseline `npm run build` passed with zero Astro diagnostics. Continue to run the configured and unset endpoint checks below; do not treat any future timeout as a passing check.
 
 ### Task 1: Add the conditional sitewide beacon
 
@@ -76,7 +76,9 @@ The latest `npm run build` timed out during `astro check`, and a standalone Astr
   In the `BaseLayout.astro` frontmatter, define:
 
   ```ts
-  const goatcounterEndpoint = import.meta.env.PUBLIC_GOATCOUNTER_ENDPOINT;
+  const goatcounterEndpoint = import.meta.env.PROD
+    ? import.meta.env.PUBLIC_GOATCOUNTER_ENDPOINT
+    : undefined;
   ```
 
   Before `</body>`, render the official snippet only when that value is non-empty:

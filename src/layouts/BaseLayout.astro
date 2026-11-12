@@ -10,6 +10,9 @@ const {
   title = 'Trewwwsec — Security engineering in the signal/noise lab',
   description = 'Security engineer researching, operating, and engineering across defensive and offensive security.',
 } = Astro.props;
+const goatcounterEndpoint = import.meta.env.PROD
+  ? import.meta.env.PUBLIC_GOATCOUNTER_ENDPOINT
+  : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -45,5 +48,13 @@ const {
         <a href="mailto:trewwwsec@gmail.com">Email</a>
       </div>
     </footer>
+    {goatcounterEndpoint && (
+      <script
+        is:inline
+        async
+        src="https://gc.zgo.at/count.js"
+        data-goatcounter={goatcounterEndpoint}
+      ></script>
+    )}
   </body>
 </html>

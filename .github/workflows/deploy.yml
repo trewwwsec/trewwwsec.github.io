@@ -33,6 +33,7 @@ jobs:
           ASTRO_TELEMETRY_DISABLED: 1
           SITE_URL: ${{ vars.SITE_URL || 'https://trewwwsec.github.io' }}
           SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH || '/' }}
+          PUBLIC_GOATCOUNTER_ENDPOINT: ${{ vars.GOATCOUNTER_ENDPOINT }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

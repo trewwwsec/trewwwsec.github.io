@@ -38,6 +38,10 @@ If publishing as a project page instead of the user page, set these repository v
 - `SITE_URL`: `https://trewwwsec.github.io`
 - `SITE_BASE_PATH`: `/REPOSITORY_NAME/`
 
+## Visitor analytics
+
+The site supports GoatCounter for aggregate page views and referrers. To enable collection, create a GoatCounter site for `trewwwsec.github.io` and set the Actions repository variable `GOATCOUNTER_ENDPOINT` to its `/count` endpoint. This endpoint is public and appears in generated HTML; do not use an API token or password. The beacon runs only in production builds and only when the endpoint is configured. GoatCounter does not use cookies or persistent visitor identifiers.
+
 ## Edit before launch
 
 Replace placeholder contact/project details in `src/pages/index.astro` and `src/layouts/BaseLayout.astro`:
