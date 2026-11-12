@@ -10,7 +10,7 @@ const title = `${entry.data.title} — Trewwwsec`;
   <article class="post-shell">
     <a class="eyebrow back-link" href="/blog/">← Research index</a>
     <header class="post-header">
-      <p class="eyebrow">Reposted research note</p>
+      <p class="eyebrow">{entry.data.sourceUrl ? 'Reposted research note' : 'Lab writeup'}</p>
       <h1>{entry.data.title}</h1>
       <p class="lede">{entry.data.description}</p>
       <div class="post-meta">
@@ -29,6 +29,55 @@ const title = `${entry.data.title} — Trewwwsec`;
     </div>
     <div class="prose">
       <Content />
+
     </div>
   </article>
+<script>
+  const maxPreviewLines = 20;
+
+  document.querySelectorAll('.prose pre').forEach((pre, index) => {
+    const lineCount = (pre.textContent ?? '').replace(/\n$/, '').split('\n').length;
+    if (lineCount <= maxPreviewLines) return;
+
+    pre.id ||= `code-block-${index + 1}`;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block is-collapsed';
+    pre.before(wrapper);
+    wrapper.append(pre);
+
+    const toggle = document.createElement('button');
+    toggle.className = 'code-block-toggle';
+    toggle.type = 'button';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', pre.id);
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.classList.add('code-block-toggle-icon');
+    icon.setAttribute('viewBox', '0 0 16 16');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.setAttribute('focusable', 'false');
+
+    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    arrow.setAttribute('fill', 'none');
+    arrow.setAttribute('stroke', 'currentColor');
+    arrow.setAttribute('stroke-linecap', 'round');
+    arrow.setAttribute('stroke-linejoin', 'round');
+    arrow.setAttribute('stroke-width', '1.75');
+
+    const label = document.createElement('span');
+    label.textContent = 'Expand';
+    toggle.append(icon, label);
+    icon.append(arrow);
+    arrow.setAttribute('d', 'M8 4v8 M4 8l4 4 4-4');
+
+    toggle.addEventListener('click', () => {
+      const expanded = wrapper.classList.toggle('is-expanded');
+      wrapper.classList.toggle('is-collapsed', !expanded);
+      label.textContent = expanded ? 'Collapse' : 'Expand';
+      arrow.setAttribute('d', expanded ? 'M8 12V4 M4 8l4-4 4 4' : 'M8 4v8 M4 8l4 4 4-4');
+      toggle.setAttribute('aria-expanded', String(expanded));
+    });
+    wrapper.append(toggle);
+  });
+</script>
 </BaseLayout>
