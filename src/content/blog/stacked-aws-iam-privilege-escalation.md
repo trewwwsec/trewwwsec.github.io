@@ -24,7 +24,7 @@ The `cg_dev_lab` IAM policy restricts direct privilege changes, but still allows
     - [Why this escalation works](#why-this-escalation-works)
     - [Create a CloudFormation template](#create-a-cloudformation-template)
     - [Create a self-managed StackSet](#create-a-self-managed-stackset)
-    - [Deploy a StackSet instance into your lab account](#deploy-a-stackset-instance-into-your-lab-account)
+    - [Deploy a StackSet instance](#deploy-a-stackset-instance)
     - [Verify that CloudFormation created the role](#verify-that-cloudformation-created-the-role)
     - [Retrieve the lab secret](#retrieve-the-lab-secret)
 
@@ -998,7 +998,7 @@ aws cloudformation create-stack-set \
     "StackSetId": "cg-escalation-lab:1fd93072-05f4-4ec1-b030-6b24ea90a1e4"
 }
 ```
-#### Deploy a StackSet instance into your lab account
+#### Deploy a StackSet instance
 This returns an `OperationId`.
 ```bash
 aws cloudformation create-stack-instances \
