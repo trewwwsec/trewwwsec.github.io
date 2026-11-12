@@ -3,7 +3,7 @@ platform: HackSmarter
 difficulty: Hard
 category: AWS
 title: "Hack Smarter: Stacked — AWS IAM Privilege Escalation"
-description: "A walkthrough of escalating from a developer IAM policy through CloudFormation StackSets to retrieve a secret in the Hack Smarter AWS lab."
+description: "A walkthrough of escalating from a developer IAM policy through CloudFormation StackSets to retrieve a secret."
 pubDate: 2026-11-12
 readTime: "13 min read"
 tags: ["Hack Smarter", "AWS", "IAM", "Privilege Escalation"]
@@ -11,7 +11,7 @@ featured: false
 ---
 ## Summary
 
-The `cg_dev_lab` IAM policy restricts direct privilege changes, but still allows actions such as `iam:PassRole`, Lambda creation, and CloudFormation StackSet deployment. By passing the StackSet administration role, whose execution role has `AdministratorAccess`, the developer can use CloudFormation to create a Lambda role with Secrets Manager read access, then invoke it to retrieve the lab secret.
+The `cg_dev_lab` IAM policy restricts direct privilege changes, but still allows actions such as `iam:PassRole`, Lambda function creation, and CloudFormation StackSet deployment. By passing the StackSet administration role, whose execution role has `AdministratorAccess`, the developer can use CloudFormation StackSets to have the privileged execution role create a Lambda execution role with Secrets Manager read access, then invoke a function running under that role to retrieve the lab secret.
 
 ## Table of Contents
 
