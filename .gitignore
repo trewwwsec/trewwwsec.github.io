@@ -37,3 +37,4 @@ Thumbs.db
 # Local runtime/tool state
 .omx/
 .playwright-mcp/
+.worktrees/
